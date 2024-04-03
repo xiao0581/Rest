@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+
+        <h2>GetAll</h2>
+        <button v-on:click="getAll">GetAll</button>
+        <table class="table table-striped">
+            <tr v-for="post in posts">
+               
+                <td>{{post.id}}</td>
+                <td>{{post.title}}</td>
+            </tr>           
+        </table>
+        <h2>GetById</h2>
+        <input type="number"  v-model="getId">
+        <button v-on:click="getById(getId)">getById</button>
+            <div v-if="singlePoster">Id   :{{singlePoster.id}}Title   :{{singlePoster.title}}price  :{{singlePoster.price}}</div>     
+               
+            <h2>Post</h2>
+        <div>  
+        <input type="text" v-model="addData.title">
+        <input type="number" v-model.number="addData.price">    
+        <button v-on:click="addBook">Add</button>
+            {{addMessage}}
+    </div>
+
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
