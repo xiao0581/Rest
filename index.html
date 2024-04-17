@@ -1,41 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
- 
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
-    <title>Document</title>
+    <title>booklib</title>
 </head>
+
 <body>
     <div id="app">
 
         <h2>GetAll</h2>
-        <button v-on:click="getAll">GetAll</button>
-        <table class="table table-striped">
-            <tr v-for="post in posts">
-               
-                <td>{{post.id}}</td>
-                <td>{{post.title}}</td>
-            </tr>           
+        <button v-on:click="getAll"  id="getAllButton">GetAll</button>
+        <table class="table table-striped" id="tb" v-if="books.length">
+            <tr v-for="book in books" id="tr">
+                <td>{{book.id}}</td>
+                <td>{{book.title}}</td>
+                <td>{{book.price}}</td>
+            </tr>
         </table>
         <h2>GetById</h2>
-        <input type="number"  v-model="getId">
-        <button v-on:click="getById(getId)">getById</button>
-            <div v-if="singlePoster">Id   :{{singlePoster.id}}Title   :{{singlePoster.title}}price  :{{singlePoster.price}}</div>     
-               
-            <h2>Post</h2>
-        <div>  
-        <input type="text" v-model="addData.title">
-        <input type="number" v-model.number="addData.price">    
-        <button v-on:click="addBook">Add</button>
-            {{addMessage}}
-    </div>
+        <input type="number" v-model="getId" id="idInput">
+        <button v-on:click="getById(getId)" id="getByIdButton">getById</button>
+        <div id="outPut" v-if="singlePoster">Id :{{singlePoster.id}}Title :{{singlePoster.title}}price :{{singlePoster.price}}</div>
+
+        <h2>Post</h2>
+
+        <input type="text" v-model="addData.title" placeholder="title" id="titleInput">
+        <input type="number" v-model.number="addData.price" placeholder="title" id="priceInput">
+        
+        <button v-on:click="addBook" id="addButton">Add</button>
+        {{addMessage}}
+
+        <h2>Delete</h2>
+        <input type="number" v-model="deleteMessage" id="deletId">
+        <button v-on:click="deleteBook(deleteMessage)" id="deleteButton">Delete</button>
+
+
+        <h2>Update </h2>
+        <input v-model.number="updateBook.id" placeholder="id" type="number" id="UpdateIdInput"/>
+        <input v-model="updateBook.title" placeholder="title" type="text" id="UpdateTitle"/>
+        <input v-model.number="updateBook.price" placeholder="price" type="number" id="UpdatePrice"/>
+        <button v-on:click="update()" class="btn btn-success" id="updateButton">Update</button>
 
     </div>
-
     <script src="index.js"></script>
 </body>
+
 </html>
